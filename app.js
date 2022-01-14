@@ -98,4 +98,15 @@ app.post("/addQuiz", async (req, res) => {
   }
 });
 
+app.get("/quizzes", async (req, res) => {
+  try {
+    const { id, question, answers, quizType, correct } = req.query;
+    let dbResp = await Quiz.find({}).lean();
+    console.log(dbResp);
+    res.status(201).json(dbResp);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 module.exports = app;
